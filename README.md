@@ -8,25 +8,52 @@ This project is an interactive, first-person 3D virtual puzzle-corridor experien
 ## Controls & Instructions
 
 | Action | Control (Input) |
+| :--- | :--- |
 | **Movement** | W, A, S, D / Arrow Keys |
 | **Look / Aim** | Mouse Movement |
 | **Interact / Fire Pointer** | E Key |
 
-### **Objective:**
-1. **Survive the Hazards:** Navigate past the security lasers. Red beam corridors will damage your health, while high-voltage grids will trigger an instant kill.
 
-2. **Find the Sensor Key:** Locate and collect the hidden Sensor Key card. 
+## System Requirements & Desired Settings
+* **Target Platform:** Windows PC (Desktop executable or Unity Editor Play Mode)
 
-3. **Deactivate the Grid:** Use your player's built-in raycast laser pointer to aim at the purple wall-mounted Security Button and press E to shut down the main laser defenses.
+* **Hardware Requirements:** Standard keyboard and mouse input. Any DirectX 11 or DirectX 12 compatible graphics card.
 
-4. **Acquire the Access Key:** Grab the Access Key card located past the defenses.
+* **Desired Project Settings:**
+  * Resolution: 1920x1080 (Aspect Ratio: 16:9 widescreen)
+  * Input System: Built using Unity's standard Input Manager.
+  * Audio: System volume enabled to hear interactive spatial audio feedback loops.
 
-5. **Escape:** Approach the locked laboratory door with the Access Key to permanently open the exit and complete the level.
+
+## Official Walkthrough & Puzzle Answer Key
+The level functions as a sequential logic puzzle that must be completed in the exact order below:
+
+1. **The Laser Corridor:** Navigate past the initial red security lasers. Standard horizontal beams will drain player health on impact, while the fast high-voltage grids will trigger an instant kill.
+
+2. **Retrieving Key 1 (Sensor Key):** Follow the branching path to locate and collect the physical Sensor Key card item floating in the room.
+
+3. **Deactivating the Grid:** Return to the main corridor. Face the purple wall-mounted Security Button. Point your player's built-in raycast laser pointer directly at the button and press E. Because you have the Sensor Key, the button will verify the identity, turn green, and completely shut down the active laser grid.
+
+4. **Retrieving Key 2 (Access Key):** Walk safely through the deactivated grid path to find and collect the final Access Key card.
+
+5. **The Final Escape:** Approach the locked laboratory exit door. With the Access Key in your inventory, crossing the door's proximity trigger will automatically swing it open permanently to complete the experience.
+
+
+## Known Limitations & Application Bugs
+* **Character Controller Velocity:** If the player walks into a hazard while mid-air or sliding down a collider slope, a slight physics stutter may occur right as the teleportation logic sets in. This is handled gracefully in the code by completely arresting all active Rigidbody velocity vectors before changing the transform position.
+
+* **Raycast Distance:** The interaction laser pointer has a maximum range restriction. If the player stands too far away from the purple Security Button, pressing E will not trigger it. The player must step into proper proximity range for the raycast to register a valid hit.
+
+
+## References, Assets & Credits
+* **Audio Sound Effects:** UI Chimes, Door Servos, and Laser Zap assets sourced via the Unity Asset Store (Free Casual Game SFX Packs / Freesound.org open-source library).
+
+* **Textures & Materials:** Custom Unity Emission shaders utilized to create the glowing red visual look for the physical laser hazard boundaries.
+
+* **3D Models:** Level design architecture composed entirely using Unity's built-in 3D Primitive shapes (Cubes, Capsules, and Cylinders) to maintain a clean, high-performance prototyping test-chamber environment.
 
 
 ## Implemented Systems & C# Script Logic
-
-The project perfectly meets all core technical parameters outlined in the assignment brief through four core custom C# scripts:
 
 ### 1. Physics & Interaction System (PlayerInteract.cs)
 * **Logic:** Utilizes Unity's physics engine to cast an invisible Physics.Raycast straight out from the center of the player's camera view. 
